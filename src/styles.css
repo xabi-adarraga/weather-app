@@ -1,1 +1,28 @@
-/* You can add global styles to this file, and also import other style files */
+/* Fondo  gradiente y altura mínima del documento */
+html{
+	background: #ff6e7f;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to top, #ff6e7f, #bfe9ff);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to top, #ff6e7f, #bfe9ff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	min-height: 100vh;
+}
+body{
+	background-color: transparent!important;
+}
+
+/* Botones de navegación en diferentes estados */
+.nav .nav-item .nav-link.btn.btn-dark:not(.active){
+	color: var(--bs-btn-active-bg);
+}
+.nav .nav-item .nav-link.btn.btn-dark.active{
+	color: #fff;
+}
+.nav .nav-item .nav-link.btn.btn-dark:hover{
+	font-weight: 700;
+}
+.nav .nav-item .nav-link.btn.btn-dark:not(.active):hover{
+	background-color: #fff;
+	border-color: var(--bs-btn-active-bg)!important;
+}
+.nav .nav-item .nav-link.btn.btn-dark:not(.active):focus{
+	background-color: #fff;
+}

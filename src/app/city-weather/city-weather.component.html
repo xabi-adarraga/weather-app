@@ -1,0 +1,104 @@
+	
+<div aria-labelledby="component-title">
+	<!-- Contenido de las pestañas de ciudades -->
+	<div class="weather-tab-content tab-content mt-5">
+
+		<!-- Iteración para cada ciudad seleccionada -->
+		<div class="tab-pane" style="display:none;" *ngFor="let selectedcity of selectedCities" id="{{selectedcity.replaceAll(' ', '').replaceAll(',', '')}}">
+			<!-- Título de la ciudad -->
+			<h2 class="h5 text-center" id="component-title">{{selectedcity}}</h2>
+			<p class="text-center text-muted">Hoy</p>
+			<!-- Datos meteorológicos principales para hoy -->
+			<div class="row">
+				<!-- Ícono principal del tiempo -->
+				<div class="col-12 col-sm-4 d-flex justify-content-center" *ngIf="localData[selectedcity] && localData[selectedcity].list">
+					<img class="main-weather-icon w-auto h-100" src="assets/icons/{{localData[selectedcity].list[0].weather[0].icon.replace('n','d')}}.png" alt="{{localData[selectedcity].list[0].weather[0].description}}">
+				</div>
+				<div class="col-12 col-sm-4" *ngIf="localData[selectedcity] && localData[selectedcity].list">
+					<!-- Temperatura actual -->
+					<p class="text-center display-1 mb-0">{{kelvinToCelsius(localData[selectedcity].list[0].main.temp)}}º</p>
+					<!-- Temperaturas máxima y mínima para hoy -->
+					<p class="text-center h5">
+						{{kelvinToCelsius(getMinMaxTemperatureForDay(selectedcity, localData[selectedcity].list[0].dt_txt).max)}}º 
+						<span class="text-muted">
+							{{kelvinToCelsius(getMinMaxTemperatureForDay(selectedcity, localData[selectedcity].list[0].dt_txt).min)}}º
+						</span>
+					</p>
+					<!-- Humedad -->
+					<p class="text-center">Humedad: {{localData[selectedcity].list[0].main.humidity}}%</p>
+				</div>
+			</div>
+			<!-- Visualización de datos meteorológicos para días futuros -->
+			<div class="row" *ngIf="localData[selectedcity]">
+				<!-- Datos meteorológicos para 24 horas después de la hora actual -->
+				<div class="col-4 d-flex flex-column align-items-center" *ngIf="localData[selectedcity] && localData[selectedcity].list && localData[selectedcity].list[8]">
+					<!-- Icono en 24h -->
+					<img class="" src="assets/icons/{{localData[selectedcity].list[8].weather[0].icon.replace('n','d')}}.png" alt="{{localData[selectedcity].list[8].weather[0].description}}">
+					<!-- Temperatura max-min en 24h -->
+					<p class="text-center h6">
+						{{kelvinToCelsius(getMinMaxTemperatureForDay(selectedcity, localData[selectedcity].list[8].dt_txt).max)}}º 
+						<span class="text-muted">
+							{{kelvinToCelsius(getMinMaxTemperatureForDay(selectedcity, localData[selectedcity].list[8].dt_txt).min)}}º
+						</span>
+					</p>
+					<!-- Día de la semana en 24h -->
+					<p class="text-center">{{weekDay(localData[selectedcity].list[8].dt_txt)}}</p>
+				</div>
+				<!-- Datos meteorológicos para 48 horas después de la hora actual -->
+				<div class="col-4 d-flex flex-column align-items-center" *ngIf="localData[selectedcity] && localData[selectedcity].list && localData[selectedcity].list[16]">
+					<!-- Icono en 48h -->
+					<img class="" src="assets/icons/{{localData[selectedcity].list[16].weather[0].icon.replace('n','d')}}.png" alt="{{localData[selectedcity].list[16].weather[0].description}}">
+					<!-- Temperatura max-min en 48h -->
+					<p class="text-center h6">
+						{{kelvinToCelsius(getMinMaxTemperatureForDay(selectedcity, localData[selectedcity].list[16].dt_txt).max)}}º 
+						<span class="text-muted">
+							{{kelvinToCelsius(getMinMaxTemperatureForDay(selectedcity, localData[selectedcity].list[16].dt_txt).min)}}º
+						</span>
+					</p>
+					<!-- Día de la semana en 48h -->
+					<p class="text-center">{{weekDay(localData[selectedcity].list[16].dt_txt)}}</p>
+				</div>
+				<!-- Datos meteorológicos para 72 horas después de la hora actual -->
+				<div class="col-4 d-flex flex-column align-items-center" *ngIf="localData[selectedcity] && localData[selectedcity].list && localData[selectedcity].list[24]">
+					<!-- Icono en 72h -->
+					<img class="" src="assets/icons/{{localData[selectedcity].list[24].weather[0].icon.replace('n','d')}}.png" alt="{{localData[selectedcity].list[24].weather[0].description}}">
+					<!-- Temperatura max-min en 72h -->
+					<p class="text-center h6">
+						{{kelvinToCelsius(getMinMaxTemperatureForDay(selectedcity, localData[selectedcity].list[24].dt_txt).max)}}º 
+						<span class="text-muted">
+							{{kelvinToCelsius(getMinMaxTemperatureForDay(selectedcity, localData[selectedcity].list[24].dt_txt).min)}}º
+						</span>
+					</p>
+					<!-- Día de la semana en 72h -->
+					<p class="text-center">{{weekDay(localData[selectedcity].list[24].dt_txt)}}</p>
+				</div>
+
+			</div>
+			<!-- Enlace para más información en la web de OpenWeatherMap -->
+			<div class="d-flex justify-content-center" *ngIf="localData[selectedcity] && localData[selectedcity].city">
+				<a class="link-secondary text-center" href="https://openweathermap.org/city/{{localData[selectedcity].city.id}}" target="_blank" tabindex="0">Más información</a>
+			</div>
+		</div>
+	</div>
+</div>
+<div>
+	<!-- Barra de navegación de ciudades con pestañas -->
+	<ul class="weather-nav nav mt-3 flex-nowrap d-block d-sm-flex align-items-center">
+		<!-- Iteración para cada pestaña de ciudad -->
+        <li class="nav-item w-100" *ngFor="let selectedcity of selectedCities">
+          <a 
+          class="nav-link btn btn-dark border" 
+          [class.active]="activeCityTab === selectedcity" 
+          (click)="setActiveCityTab(selectedcity.replaceAll(' ', '').replaceAll(',', ''))" 
+          id="{{selectedcity.replaceAll(' ', '').replaceAll(',', '')}}-button"  
+          tabindex="0" role="tab" aria-selected="false">
+      		{{selectedcity.split(',')[0]}}
+      	  </a>
+        </li>
+    </ul>
+</div>
+<footer>
+	<!-- Fecha y hora de última actualización de los datos meteorológicos -->
+	<p class="text-center mb-0 mt-4" *ngIf="lastUpdate"><small>Última actualización: {{formatDate(lastUpdate)}}</small></p>
+	<p *ngIf="!lastUpdate" class="text-center mb-0 mt-4"><small>Sin conexión</small></p>
+</footer>

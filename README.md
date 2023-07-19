@@ -1,27 +1,62 @@
-# WeatherApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.4.
+#Weather App
 
-## Development server
+##Descripción
+Weather App es una aplicación web que te permite buscar ciudades y obtener información sobre el clima actual y pronóstico extendido. Puedes agregar tus ciudades favoritas y ver el clima de hasta 3 ciudades diferentes.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+##Instalación
+Clona el repositorio:
 
-## Code scaffolding
+git clone [URL del repositorio]
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Instala las dependencias:
 
-## Build
+npm install
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+##Ejecución
+Desarrollo
+Para ejecutar la aplicación en el entorno de desarrollo, utiliza el siguiente comando:
+ng serve
 
-## Running unit tests
+La aplicación estará disponible en http://localhost:4200/.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Producción
+Para generar una versión optimizada para producción, utiliza el siguiente comando:
 
-## Running end-to-end tests
+ng build --prod
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Esto generará los archivos en la carpeta dist/. Luego, puedes servir estos archivos utilizando un servidor HTTP, por ejemplo, con http-server:
 
-## Further help
+npm install -g http-server
+http-server dist/
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+La aplicación estará disponible en http://localhost:8080/.
+
+##Compatibilidad con Navegadores
+La aplicación ha sido probada y es compatible con los siguientes navegadores:
+
+Google Chrome (última versión)
+Mozilla Firefox (última versión)
+Microsoft Edge (última versión)
+
+##Contribuciones
+Si deseas contribuir al proyecto, sigue los siguientes pasos:
+
+Crea un nuevo fork del repositorio.
+
+Crea una nueva rama para tu funcionalidad o corrección de errores:
+
+git checkout -b mi-nueva-funcionalidad
+
+Realiza los cambios necesarios y commitea tus cambios:
+
+git commit -m "Agregada nueva funcionalidad"
+
+Realiza un push de tu rama al repositorio remoto:
+
+git push origin mi-nueva-funcionalidad
+
+Abre un Pull Request en GitHub y describe los cambios que has realizado.
+
+##Licencia
+Este proyecto se distribuye bajo la Licencia MIT.

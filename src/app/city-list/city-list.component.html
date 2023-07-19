@@ -1,0 +1,36 @@
+<div class="mb-4" aria-labelledby="component-title">
+  <!-- Título de componente -->
+  <h2 class="h5" id="component-title">Ciudades favoritas <span class="text-muted ms-2">{{selectedCities.length}}/3</span></h2>
+
+  <!-- Lista de ciudades favoritas -->
+  <ul>
+    <li class="d-flex justify-content-between mb-1" *ngFor="let selectedcity of selectedCities">
+      {{ selectedcity }}
+      <!-- Botón para eliminar la ciudad de la lista -->
+      <button type="button" class="btn btn-danger btn-sm ms-2" (click)="removeCity(selectedcity)" aria-describedby="delete-button-desc">Eliminar</button>
+    </li>
+  </ul>
+
+  <!-- Formulario para buscar ciudades -->
+  <form (ngSubmit)="getCityList()" class="d-flex align-items-center">
+    <!-- Input para introducir el nombre de la ciudad a buscar -->
+    <input type="text" name="cityInput" [(ngModel)]="searchCity" placeholder="Buscar población" class="w-75 form-control"  [disabled]="selectedCities.length >= 3" />
+    <!-- Botón para realizar la búsqueda -->
+    <button type="submit" class="btn btn-outline-dark ms-2" [disabled]="selectedCities.length >= 3">Buscar</button>
+  </form>
+
+  <!-- Formulario para añadir nuevas ciudades -->
+  <form (ngSubmit)="addCity()" class="d-flex mt-3 align-items-center" >
+    <!-- Select para seleccionar una ciudad de la lista de ciudades encontradas -->
+    <select name="citySelect" [(ngModel)]="newCity" class="w-75 form-control" [disabled]="isCitiesEmpty || selectedCities.length >= 3">
+      <option value="" disabled selected>Seleccionar población</option>
+      <!-- Opciones con las ciudades encontradas -->
+      <option *ngFor="let city of cities" [value]="city.name+', '+city.countryCode">{{ city.name }} - {{ city.adminName1 }} ({{ city.countryName }})</option>
+    </select>
+    <!-- Botón para añadir la ciudad seleccionada a la lista de favoritas -->
+    <button type="submit" class="btn btn-outline-dark ms-2" [disabled]="cities.length == 0 || selectedCities.length >= 3">Añadir</button>
+  </form>
+  <div class="d-flex justify-content-center">
+    <button type="button" class="btn btn-outline-dark mt-4 ms-auto me-auto" (click)="clearData()">Borrar datos</button>
+  </div>
+</div>
