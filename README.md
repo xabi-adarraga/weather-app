@@ -1,7 +1,7 @@
 
 # Weather App
 
-##Descripción
+## Descripción
 Weather App es una aplicación web que te permite buscar ciudades y obtener información sobre el clima actual y pronóstico extendido. Puedes agregar tus ciudades favoritas y ver el clima de hasta 3 ciudades diferentes.
 
 ## Instalación
@@ -23,7 +23,7 @@ La aplicación estará disponible en http://localhost:4200/.
 Producción
 Para generar una versión optimizada para producción, utiliza el siguiente comando:
 
-ng build --prod
+ng build
 
 Esto generará los archivos en la carpeta dist/. Luego, puedes servir estos archivos utilizando un servidor HTTP, por ejemplo, con http-server:
 
