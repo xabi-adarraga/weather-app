@@ -1,19 +1,19 @@
 
-#Weather App
+# Weather App
 
 ##Descripción
 Weather App es una aplicación web que te permite buscar ciudades y obtener información sobre el clima actual y pronóstico extendido. Puedes agregar tus ciudades favoritas y ver el clima de hasta 3 ciudades diferentes.
 
-##Instalación
+## Instalación
 Clona el repositorio:
 
-git clone [URL del repositorio]
+git clone https://github.com/xabi-adarraga/weather-app.git
 
 Instala las dependencias:
 
 npm install
 
-##Ejecución
+## Ejecución
 Desarrollo
 Para ejecutar la aplicación en el entorno de desarrollo, utiliza el siguiente comando:
 ng serve
@@ -32,14 +32,14 @@ http-server dist/
 
 La aplicación estará disponible en http://localhost:8080/.
 
-##Compatibilidad con Navegadores
+## Compatibilidad con Navegadores
 La aplicación ha sido probada y es compatible con los siguientes navegadores:
 
 Google Chrome (última versión)
 Mozilla Firefox (última versión)
 Microsoft Edge (última versión)
 
-##Contribuciones
+## Contribuciones
 Si deseas contribuir al proyecto, sigue los siguientes pasos:
 
 Crea un nuevo fork del repositorio.
@@ -58,5 +58,5 @@ git push origin mi-nueva-funcionalidad
 
 Abre un Pull Request en GitHub y describe los cambios que has realizado.
 
-##Licencia
+## Licencia
 Este proyecto se distribuye bajo la Licencia MIT.
